@@ -3,9 +3,9 @@ import snowflake.connector
 from dotenv import load_dotenv
 from snowflake.snowpark import Session
 
-load_dotenv()
-
 def connection() -> snowflake.connector.SnowflakeConnection:
+    load_dotenv()
+
     if path.isfile("/snowflake/session/token"):
         creds = {
             'host': environ['SNOWFLAKE_HOST'],
@@ -26,7 +26,6 @@ def connection() -> snowflake.connector.SnowflakeConnection:
             'password': environ['SNOWFLAKE_PASSWORD'],
             'warehouse': environ['SNOWFLAKE_WAREHOUSE'],
             'database': environ['SNOWFLAKE_DATABASE'],
-            'schema': environ['SNOWFLAKE_SCHEMA'],
             'client_session_keep_alive': True
         }
 
