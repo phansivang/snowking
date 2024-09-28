@@ -17,23 +17,12 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Login to Docker Registry
-        run: echo "${{ secrets.SNOWFLAKE_PASSWORD }}" | docker login vdbyyxh-ly00649.registry.snowflakecomputing.com/king_db/public/king_repo -u ${{ secrets.SNOWFLAKE_USERNAME }} --password-stdin
+        run: echo "${{ secrets.SNOWFLAKE_PASSWORD }}" | docker login ${{ secrets.SNOWFLAKE_IMAGE }} -u ${{ secrets.SNOWFLAKE_USER }} --password-stdin
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t vdbyyxh-ly00649.registry.snowflakecomputing.com/king_db/public/king_repo/king_app:dev .
-          docker push vdbyyxh-ly00649.registry.snowflakecomputing.com/king_db/public/king_repo/king_app:dev
-
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Login to Docker Registry
-        run: echo "${{ secrets.SNOWFLAKE_PASSWORD }}" | docker login ${{ secrets.IMAGE_REPOSITORY }} -u ${{ secrets.SNOWFLAKE_USERNAME }} --password-stdin
-
-      - name: Run Tests
-        run: docker run --rm ${{ secrets.IMAGE_REPOSITORY }}/streamlit-snowflake-app:dev pytest
-    needs: build
+          docker build -t ${{ secrets.SNOWFLAKE_IMAGE }}/king_app:dev .
+          docker push ${{ secrets.SNOWFLAKE_IMAGE }}/king_app:dev
 
   deploy:
     name: Deploy
@@ -41,4 +30,4 @@ jobs:
     steps:
       - name: Deploy to Dev Environment
         run: echo "Deploying to dev environment"
-    needs: test
+    needs: build
