@@ -1,0 +1,45 @@
+# Byte-compiled files
+__pycache__
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+pip-log.txt
+pip-wheel-metadata/
+*.egg-info/
+dist/
+build/
+*.egg
+.env
+
+# Test and coverage files
+.coverage
+.tox/
+.nosetests.xml
+coverage.xml
+*.cover
+*.log
+*.pot
+*.pyc
+*.pyo
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+
+# Local environment configuration
+.env
