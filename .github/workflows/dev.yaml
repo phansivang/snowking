@@ -21,13 +21,33 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t ${{ secrets.SNOWFLAKE_IMAGE }}/king_app:dev .
+          docker build --no-cache -t ${{ secrets.SNOWFLAKE_IMAGE }}/king_app:dev .
           docker push ${{ secrets.SNOWFLAKE_IMAGE }}/king_app:dev
 
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to Dev Environment
-        run: echo "Deploying to dev environment"
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Python script
+        env:
+          IMAGE_TAG: dev
+          SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+          SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+          SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
+          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+          SNOWFLAKE_APP_NAME: ${{ secrets.SNOWFLAKE_APP_NAME }}
+          SNOWFLAKE_IMAGE: ${{ secrets.SNOWFLAKE_IMAGE }}
+          SNOWFLAKE_PORT: ${{ secrets.SNOWFLAKE_PORT }}
+          SNOWFLAKE_RESET_SERVER_DB: ${{ secrets.SNOWFLAKE_RESET_SERVER_DB }}
+          SNOWFLAKE_RESET_SERVER_ROLE: ${{ secrets.SNOWFLAKE_RESET_SERVER_ROLE }}
+        run: |
+          python app/restart_server.py
     needs: build
