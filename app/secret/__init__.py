@@ -1,1 +1,0 @@
-from .credential import snowflake_connector

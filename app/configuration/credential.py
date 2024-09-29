@@ -1,11 +1,6 @@
 from os import environ, path
-import snowflake.connector
-from dotenv import load_dotenv
-from snowflake.snowpark import Session
 
-def connection() -> snowflake.connector.SnowflakeConnection:
-    load_dotenv()
-
+def snowflake_creds() -> dict:
     if path.isfile("/snowflake/session/token"):
         creds = {
             'host': environ['SNOWFLAKE_HOST'],
@@ -23,13 +18,13 @@ def connection() -> snowflake.connector.SnowflakeConnection:
         creds = {
             'account': environ['SNOWFLAKE_ACCOUNT'],
             'user': environ['SNOWFLAKE_USER'],
+            'role': environ['SNOWFLAKE_ROLE'],
             'password': environ['SNOWFLAKE_PASSWORD'],
             'warehouse': environ['SNOWFLAKE_WAREHOUSE'],
             'database': environ['SNOWFLAKE_DATABASE'],
+            'server_reset_db': environ['SNOWFLAKE_RESET_SERVER_DB'],
+            'server_reset_query': environ['SNOWFLAKE_RESET_SERVER_QUERY'],
             'client_session_keep_alive': True
         }
 
-    return snowflake.connector.connect(**creds)
-
-def snowflake_connector() -> Session:
-    return Session.builder.configs({"connection": connection()}).create()
+    return creds
