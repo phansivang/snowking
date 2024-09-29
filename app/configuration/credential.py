@@ -18,15 +18,12 @@ def snowflake_creds() -> dict:
         creds = {
             'account': environ['SNOWFLAKE_ACCOUNT'],
             'user': environ['SNOWFLAKE_USER'],
+            'role': environ['SNOWFLAKE_ROLE'],
             'password': environ['SNOWFLAKE_PASSWORD'],
             'warehouse': environ['SNOWFLAKE_WAREHOUSE'],
             'database': environ['SNOWFLAKE_DATABASE'],
-            'app_name': environ['SNOWFLAKE_APP_NAME'],
-            'image': environ['SNOWFLAKE_IMAGE'],
             'server_reset_db': environ['SNOWFLAKE_RESET_SERVER_DB'],
-            'server_reset_role': environ['SNOWFLAKE_RESET_SERVER_ROLE'],
-            'server_reset_port': environ['SNOWFLAKE_PORT'],
-            'image_tag': environ['IMAGE_TAG'],
+            'server_reset_query': environ['SNOWFLAKE_RESET_SERVER_QUERY'],
             'client_session_keep_alive': True
         }
 
