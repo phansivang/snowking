@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
-
-from secret import snowflake_connector
+from connector import snowflake_connector
 
 query = "SELECT * FROM ACCOUNT_USAGE.ACCESS_HISTORY LIMIT 50;"
 
