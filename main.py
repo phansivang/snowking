@@ -8,5 +8,5 @@ snowflake_connector = snowflake_connector()
 
 dataframe = pd.DataFrame(snowflake_connector.sql(query).collect())
 
-st.title("Access History Test")
+st.title("Access History")
 st.write(dataframe)
