@@ -15,4 +15,4 @@ COPY . ./
 
 # Set the default command to run Streamlit when the container starts
 # This command runs the app located at app/main.py on port 8501
-CMD ["streamlit", "run", "app/main.py"]
+CMD ["streamlit", "run", "main.py"]
