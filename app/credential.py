@@ -1,9 +1,5 @@
 from os import environ, path
 
-from dotenv import load_dotenv
-
-load_dotenv()
-
 def snowflake_creds() -> dict:
     if path.isfile("/snowflake/session/token"):
         creds = {
