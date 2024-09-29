@@ -21,8 +21,8 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build --no-cache -t ${{ secrets.SNOWFLAKE_IMAGE }}/king_app:dev .
-          docker push ${{ secrets.SNOWFLAKE_IMAGE }}/king_app:dev
+          docker build --no-cache -t ${{ secrets.SNOWFLAKE_IMAGE }}:${{ github.ref_name }} .
+          docker push ${{ secrets.SNOWFLAKE_IMAGE }}:${{ github.ref_name }}
 
   deploy:
     name: Deploy
@@ -37,7 +37,7 @@ jobs:
 
       - name: Run Python script
         env:
-          IMAGE_TAG: dev
+          IMAGE_TAG: ${{ github.ref_name }}
           SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
           SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
