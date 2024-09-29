@@ -49,5 +49,5 @@ jobs:
           SNOWFLAKE_RESET_SERVER_DB: ${{ secrets.SNOWFLAKE_RESET_SERVER_DB }}
           SNOWFLAKE_RESET_SERVER_ROLE: ${{ secrets.SNOWFLAKE_RESET_SERVER_ROLE }}
         run: |
-          python app/restart_server.py
+          python app/trigger/restart_server.py
     needs: build
