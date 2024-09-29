@@ -1,8 +1,7 @@
 import logging
 
 from snowflake.snowpark import Session
-
-from credential import snowflake_creds
+from app.config.credential import snowflake_creds
 
 
 def snowflake_connector() -> Session:

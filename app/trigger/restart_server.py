@@ -1,6 +1,6 @@
-from credential import snowflake_creds
+from app.config.credential import snowflake_creds
 
-from connector import snowflake_connector
+from app.connection.connector import snowflake_connector
 from snowflake.core import Root
 
 creds = snowflake_creds()
