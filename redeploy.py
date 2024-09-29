@@ -1,4 +1,4 @@
-from app.config.credential import snowflake_creds
+from app.configuration.credential import snowflake_creds
 
 from app.connection.connector import snowflake_connector
 from snowflake.core import Root
