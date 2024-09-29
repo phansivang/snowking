@@ -37,7 +37,7 @@ jobs:
 
       - name: Run Python script
         env:
-          IMAGE_TAG: dev
+          IMAGE_TAG: /${{ secrets.SNOWFLAKE_APP_NAME }}:dev
           SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
           SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
