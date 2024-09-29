@@ -25,7 +25,6 @@ def snowflake_creds() -> dict:
             'password': environ['SNOWFLAKE_PASSWORD'],
             'warehouse': environ['SNOWFLAKE_WAREHOUSE'],
             'database': environ['SNOWFLAKE_DATABASE'],
-            'role': environ['SNOWFLAKE_ROLE'],
             'app_name': environ['SNOWFLAKE_APP_NAME'],
             'image': environ['SNOWFLAKE_IMAGE'],
             'server_reset_db': environ['SNOWFLAKE_RESET_SERVER_DB'],
