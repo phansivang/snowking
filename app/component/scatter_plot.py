@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+@st.cache_data
 def scatter_plot():
     data = pd.DataFrame({
         'X': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
