@@ -11,6 +11,6 @@ root.session.use_database(creds['server_reset_db']) # select database
 root.session.use_schema(creds['server_reset_schema']) # select schema
 # select database and schema where is your procedure being stored.
 
-root.session.sql('CALL RESTART_SERVER_DEV();').collect() # call procedure function
+root.session.sql(creds['server_reset_query']).collect() # call procedure function
 print("Server reset successfully")
 
