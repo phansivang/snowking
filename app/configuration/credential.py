@@ -24,6 +24,7 @@ def snowflake_creds() -> dict:
             'database': environ['SNOWFLAKE_DATABASE'],
             'server_reset_db': environ['SNOWFLAKE_RESET_SERVER_DB'],
             'server_reset_query': environ['SNOWFLAKE_RESET_SERVER_QUERY'],
+            'server_reset_schema': environ['SNOWFLAKE_RESET_SERVER_SCHEMA'],
             'client_session_keep_alive': True
         }
 
