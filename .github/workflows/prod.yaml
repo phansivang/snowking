@@ -44,6 +44,7 @@ jobs:
           SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
           SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
           SNOWFLAKE_RESET_SERVER_DB: ${{ secrets.SNOWFLAKE_RESET_SERVER_DB }}
+          SNOWFLAKE_RESET_SERVER_SCHEMA: ${{ secrets.SNOWFLAKE_RESET_SERVER_SCHEMA }}
           SNOWFLAKE_RESET_SERVER_QUERY: CALL RESTART_SERVER_PROD();
         run: |
           python redeploy.py
