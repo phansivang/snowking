@@ -1,12 +1,29 @@
 import streamlit as st
-import pandas as pd
-from app.connection.connector import snowflake_connector
+from app.component.footer import footer
+from app.component.navbar import pages
 
-query = "SELECT * FROM ACCOUNT_USAGE.ACCESS_HISTORY LIMIT 50;"
+def render_page(page):
+    st.title(pages[page]["title"])
+    st.write(pages[page]["description"])
+    pages[page]["function"]()
 
-snowflake_connector = snowflake_connector()
+def main():
+    st.set_page_config(page_title="Multi-page Streamlit App", layout="wide")
 
-dataframe = pd.DataFrame(snowflake_connector.sql(query).collect())
+    # Set default page to "Bar Chart"
+    st.session_state.setdefault("page", "Bar Chart")
 
-st.title("Access History")
-st.write(dataframe)
+    # Sidebar Navigation
+    st.sidebar.title("Navigation")
+    for page_name in pages:
+        if st.sidebar.button(page_name):
+            st.session_state["page"] = page_name
+
+    # Render selected page
+    render_page(st.session_state["page"])
+
+    # Render footer
+    footer()
+
+if __name__ == "__main__":
+    main()
