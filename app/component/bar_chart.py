@@ -10,8 +10,7 @@ def bar_chart():
 
     data = pd.DataFrame({
         'Category': access_history_columns,
-        'Value': [12, 32, 22, 5, 42,21,90,75,4,26]
+        'Value': [50, 32, 22, 5, 42,21,90,75,4,26]
     })
     fig = px.bar(data, x='Category', y='Value', title='Sample Bar Chart')
-    print(222)
     st.plotly_chart(fig)
